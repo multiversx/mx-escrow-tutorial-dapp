@@ -6,8 +6,8 @@ import { NavBarLayout } from "./components/NavBarLayout";
 import { CenterLayout } from "./components/CenterLayout";
 
 export const routeNames = {
-  unlock: "unlock",
-  dashboard: "dashboard",
+  unlock: "/unlock",
+  dashboard: "/dashboard",
 };
 
 export const routes = createBrowserRouter([
