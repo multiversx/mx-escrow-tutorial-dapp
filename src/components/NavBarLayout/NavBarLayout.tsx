@@ -7,11 +7,9 @@ import {
 } from "@material-tailwind/react";
 import { logout } from "@multiversx/sdk-dapp/utils/logout";
 import { PropsWithChildren, useEffect, useState } from "react";
-import { useGetAccountInfo } from "@multiversx/sdk-dapp/hooks/account/useGetAccountInfo";
 import { routeNames } from "../../routes";
 export const NavBarLayout = ({ children }: PropsWithChildren) => {
   const [openNav, setOpenNav] = useState(false);
-  const { address } = useGetAccountInfo();
   const logoutHandler = () => {
     logout(routeNames.unlock);
   };
@@ -35,7 +33,7 @@ export const NavBarLayout = ({ children }: PropsWithChildren) => {
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
-            <strong>Escrow tutorial</strong> <small>{address}</small>
+            <strong>Escrow tutorial</strong>
           </Typography>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-x-1">
