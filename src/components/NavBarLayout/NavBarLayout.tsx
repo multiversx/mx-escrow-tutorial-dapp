@@ -9,11 +9,9 @@ import { logout } from "@multiversx/sdk-dapp/utils/logout";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useGetAccountInfo } from "@multiversx/sdk-dapp/hooks/account/useGetAccountInfo";
 import { routeNames } from "../../routes";
-import { useNavigate } from "react-router-dom";
 export const NavBarLayout = ({ children }: PropsWithChildren) => {
   const [openNav, setOpenNav] = useState(false);
   const { address } = useGetAccountInfo();
-  const navigate = useNavigate();
   const logoutHandler = () => {
     logout(routeNames.unlock);
   };
