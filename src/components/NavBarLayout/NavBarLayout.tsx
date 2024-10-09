@@ -5,13 +5,17 @@ import {
   Navbar,
   Typography,
 } from "@material-tailwind/react";
+import { logout } from "@multiversx/sdk-dapp/utils/logout";
 import { PropsWithChildren, useEffect, useState } from "react";
-
+import { useGetAccountInfo } from "@multiversx/sdk-dapp/hooks/account/useGetAccountInfo";
+import { routeNames } from "../../routes";
+import { useNavigate } from "react-router-dom";
 export const NavBarLayout = ({ children }: PropsWithChildren) => {
   const [openNav, setOpenNav] = useState(false);
-
-  const logout = () => {
-    //logout
+  const { address } = useGetAccountInfo();
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    logout(routeNames.unlock);
   };
   useEffect(() => {
     window.addEventListener(
@@ -33,12 +37,12 @@ export const NavBarLayout = ({ children }: PropsWithChildren) => {
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
-            <strong>Escrow tutorial</strong> <small>erd1....</small>
+            <strong>Escrow tutorial</strong> <small>{address}</small>
           </Typography>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-x-1">
               <Button
-                onClick={logout}
+                onClick={logoutHandler}
                 placeholder=""
                 variant="gradient"
                 size="sm"
@@ -90,7 +94,7 @@ export const NavBarLayout = ({ children }: PropsWithChildren) => {
         <MobileNav open={openNav}>
           <div className="flex items-center gap-x-1">
             <Button
-              onClick={logout}
+              onClick={logoutHandler}
               placeholder=""
               fullWidth
               variant="gradient"
