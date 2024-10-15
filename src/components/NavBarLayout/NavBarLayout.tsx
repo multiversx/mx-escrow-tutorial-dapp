@@ -8,7 +8,11 @@ import {
 import { logout } from "@multiversx/sdk-dapp/utils/logout";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { routeNames } from "../../routes";
+import { useSetupInterceptors } from "../../hooks";
+import { CenterLayout } from "../CenterLayout";
+import { Loader } from "@multiversx/sdk-dapp/UI";
 export const NavBarLayout = ({ children }: PropsWithChildren) => {
+  const { interceptorApplied } = useSetupInterceptors();
   const [openNav, setOpenNav] = useState(false);
   const logoutHandler = () => {
     logout(routeNames.unlock);
@@ -19,6 +23,14 @@ export const NavBarLayout = ({ children }: PropsWithChildren) => {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+
+  if (!interceptorApplied) {
+    return (
+      <CenterLayout>
+        <Loader noText />
+      </CenterLayout>
+    );
+  }
 
   return (
     <div className=" max-h-[100vh] w-[calc(100%+20px)] overflow-scroll">
