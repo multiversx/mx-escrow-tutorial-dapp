@@ -21,7 +21,7 @@ export interface ICreateOfferForm {
   acceptedToken: string;
   acceptedAmount: string;
   acceptedAddress: string;
-  acceptedNoce: number;
+  acceptedNonce: number;
 }
 
 const initialValues: ICreateOfferForm = {
@@ -30,7 +30,7 @@ const initialValues: ICreateOfferForm = {
   acceptedToken: "",
   acceptedAmount: "",
   acceptedAddress: "",
-  acceptedNoce: 0,
+  acceptedNonce: 0,
 };
 
 const CreateOfferSchema = object().shape({
